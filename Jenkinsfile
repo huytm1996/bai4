@@ -48,4 +48,8 @@ pipeline {
             }
         }
     }
+     triggers {
+       
+        githubPush()
+    }
 }
