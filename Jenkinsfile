@@ -39,6 +39,7 @@ pipeline {
                 script {
                     def ns = "${BRANCH_NAME}"
                     sh """
+                    kubectl delete pod -l app=app4 -n ${ns}
                     kubectl create namespace ${ns} --dry-run=client -o yaml | kubectl apply -f -
                     kubectl apply -f deployment-${ns}.yaml -n ${ns}
                     kubectl set image deployment/deployment-${ns} app4=$IMAGE_APP:${BRANCH_NAME} -n ${ns} || true
